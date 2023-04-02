@@ -1,18 +1,29 @@
-# python3
+# python3 Darja Ševcova 221RDC039
 
 class Query:
-    def __init__(self, query):
-        self.type = query[0]
-        self.number = int(query[1])
-        if self.type == 'add':
-            self.name = query[2]
+    def __init__(self):
+        self.book = {}
+        
+    def add(self, number, name):
+        self.book[number] = name
+        
+    def delete(self, number):
+        if number in self.book and self.book[number] is not None:
+            self.book[number] = None
+            
+    def find(self, number):
+        name = self.book.get(number)
+        if name is None:
+            return "not found"
+        else:
+            return name
 
 def read_queries():
     n = int(input())
     return [Query(input().split()) for i in range(n)]
 
-def write_responses(result):
-    print('\n'.join(result))
+def write_responses(contacts):
+    print('\n'.join(contacts))
 
 def process_queries(queries):
     result = []
